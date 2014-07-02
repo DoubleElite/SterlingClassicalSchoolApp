@@ -14,5 +14,11 @@
         android:id="@+id/lv_newsItems"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:scrollbarSize="20dip"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"
+        android:fastScrollEnabled="true"
+        android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb" />
+
 </RelativeLayout>

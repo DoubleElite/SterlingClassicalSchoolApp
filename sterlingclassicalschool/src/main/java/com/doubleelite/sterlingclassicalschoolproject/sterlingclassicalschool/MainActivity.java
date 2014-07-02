@@ -12,6 +12,7 @@ import android.widget.ListView;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.jsoup.Jsoup;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -87,14 +88,14 @@ public class MainActivity extends Activity {
                 // We will get the XML from an input stream
                 xpp.setInput(params[0].openConnection().getInputStream(), "UTF_8");
 
-            /* We will parse the XML content looking for the "<title>" tag which appears inside the "<item>" tag.
-             * However, we should take in consideration that the rss feed name also is enclosed in a "<title>" tag.
-             * As we know, every feed begins with these lines: "<channel><title>Feed_Name</title>...."
-             * so we should skip the "<title>" tag which is a child of "<channel>" tag,
-             * and take in consideration only "<title>" tag which is a child of "<item>"
-             *
-             * In order to achieve this, we will make use of a boolean variable.
-             */
+                /* We will parse the XML content looking for the "<title>" tag which appears inside the "<item>" tag.
+                 * However, we should take in consideration that the rss feed name also is enclosed in a "<title>" tag.
+                 * As we know, every feed begins with these lines: "<channel><title>Feed_Name</title>...."
+                 * so we should skip the "<title>" tag which is a child of "<channel>" tag,
+                 * and take in consideration only "<title>" tag which is a child of "<item>"
+                 *
+                 * In order to achieve this, we will make use of a boolean variable.
+                 */
                 boolean insideItem = false;
 
                 // Returns the type of current event: START_TAG, END_TAG, etc..
@@ -109,12 +110,21 @@ public class MainActivity extends Activity {
                             if (insideItem)
                                 item.title = xpp.nextText();
                         } else if (xpp.getName().equalsIgnoreCase("description")) {
-                            if (insideItem){}
-                                //item.description = xpp.nextText();
-                            //links.add(xpp.nextText()); //extract the link of article
+                            if (insideItem) {
+                                // Get the description. Use Jsoup to parse out all the HTML in it.
+                                String description = xpp.nextText();
+                                String completeDescription = Jsoup.parse(description).text();
+                                item.description = completeDescription;
+                            }
                         } else if (xpp.getName().equalsIgnoreCase("pubDate")) {
-                            if (insideItem)
-                                item.date = xpp.nextText();
+                            if (insideItem) {
+                                // Get the text from XML. Take the date which is formatted like Tues, 27 Aug 2013 05:00:00GMT
+                                // And  only take the text before the first 0 - Tues, 27 Aug
+                                // Lookup String.split() for more info on how it works
+                                String date = xpp.nextText();
+                                String[] dateSplit = date.split("05:");
+                                item.date = dateSplit[0];
+                            }
                         }
 
                     } else if(eventType==XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")){

@@ -140,5 +140,10 @@
     <color name="DarkBlue">#00008B</color>
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
+
+
     <color name="PrimaryColor">#669900</color>
+    <color name="PrimaryColorDark">#4e7501</color>
+    <color name="PrimaryColorLight">#7fbf00</color>
+    <color name="SecondaryColor">#A69508</color>
 </resources>
