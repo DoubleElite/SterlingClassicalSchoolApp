@@ -30,6 +30,7 @@
         android:text="Small Text"
         android:id="@+id/tv_description"
         android:paddingTop="@dimen/small_headline_and_body"
+        android:paddingBottom="@dimen/small_headline_and_body"
         android:layout_below="@+id/tv_title"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

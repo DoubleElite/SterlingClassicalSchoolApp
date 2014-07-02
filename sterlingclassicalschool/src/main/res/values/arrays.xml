@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array
+        name="main_app_drawer_pages">
+        <item>Events</item>
+        <item>Student Schedule</item>
+        <item>Character Guide</item>
+        <item>Information</item>
+    </array>
+</resources>

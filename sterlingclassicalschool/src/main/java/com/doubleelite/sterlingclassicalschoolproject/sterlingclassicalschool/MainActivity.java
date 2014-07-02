@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import org.apache.http.HttpResponse;
@@ -29,11 +31,22 @@ import java.util.Collections;
 
 public class MainActivity extends Activity {
 
+    // Views
     ListView lvNewsItems;
+    DrawerLayout drawerLayout;
+    ListView drawerList;
+
+    // Adapters
     NewsItemAdapter newsItemAdapter;
+
+    // Classes
     ArrayList<NewsItem> newsItems;
     NewsItem item;
 
+    // Instance variables
+    String[] appPages;
+
+    // App Context
     Context context;
 
     @Override
@@ -41,10 +54,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Find android views
+        // Get Views
         lvNewsItems = (ListView)findViewById(R.id.lv_newsItems);
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawerList = (ListView)findViewById(R.id.lv_drawer_main);
 
-        // Initializing instance variables
+        // Initializing classes
         newsItems = new ArrayList<NewsItem>();
         context = this;
 
@@ -54,6 +69,12 @@ public class MainActivity extends Activity {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
+        // Set adapters
+        appPages = getResources().getStringArray(R.array.main_app_drawer_pages);
+        drawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appPages));
+
+        //drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
     }
 
