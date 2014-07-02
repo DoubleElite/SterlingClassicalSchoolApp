@@ -112,9 +112,11 @@ public class MainActivity extends Activity {
                         } else if (xpp.getName().equalsIgnoreCase("description")) {
                             if (insideItem) {
                                 // Get the description. Use Jsoup to parse out all the HTML in it.
-                                String description = xpp.nextText();
-                                String completeDescription = Jsoup.parse(description).text();
-                                item.description = completeDescription;
+                                // Then take everything before the event date part (which is then just the description itself)
+                                String htmlDescription = xpp.nextText();
+                                String description = Jsoup.parse(htmlDescription).text();
+                                description = description.substring(0, description.indexOf("event date"));
+                                item.description = description;
                             }
                         } else if (xpp.getName().equalsIgnoreCase("pubDate")) {
                             if (insideItem) {
