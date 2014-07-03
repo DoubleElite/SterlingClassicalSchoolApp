@@ -1,44 +1,32 @@
 package com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.jsoup.Jsoup;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
-public class MainActivity extends Activity {
+public class NewsFragment extends Fragment {
 
     // Views
     ListView lvNewsItems;
-    DrawerLayout drawerLayout;
-    ListView drawerList;
 
     // Adapters
     NewsItemAdapter newsItemAdapter;
@@ -46,60 +34,22 @@ public class MainActivity extends Activity {
     // Classes
     ArrayList<NewsItem> newsItems;
     NewsItem item;
-
-    // Instance variables
-    String[] appPages;
-
-    // App Context
     Context context;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // Get Views
-        lvNewsItems = (ListView)findViewById(R.id.lv_newsItems);
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        drawerList = (ListView)findViewById(R.id.lv_drawer_main);
+        lvNewsItems = (ListView)getView().findViewById(R.id.lv_newsItems);
 
         // Initializing classes
         newsItems = new ArrayList<NewsItem>();
-        context = this;
-
-        // Download the latest feed
-        try {
-            new URLAsyncTask().execute(new URL("http://feeds.feedburner.com/SterlingClassicalSchool?format=xml"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        // Set adapters
-        appPages = getResources().getStringArray(R.array.main_app_drawer_pages);
-        drawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appPages));
-
-        // Set listener for drawer items
-        drawerList.setOnItemClickListener(new DrawerItemClickListener());
-
+        context = getActivity();
     }
 
+    @Nullable
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.news_fragment, container, false);
     }
 
     private class URLAsyncTask extends AsyncTask<URL, String, ArrayList<NewsItem>> {
@@ -180,13 +130,6 @@ public class MainActivity extends Activity {
             Log.v("APP", "Done downloading now parse it");
             newsItemAdapter = new NewsItemAdapter(context, R.layout.news_item, newsItem);
             lvNewsItems.setAdapter(newsItemAdapter);
-        }
-    }
-
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView parent, View view, int position, long id) {
-
         }
     }
 
