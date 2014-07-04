@@ -28,6 +28,7 @@
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Sterling</item>
         <item name="android:actionModeBackground">@drawable/cab_background_top_sterling</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_sterling</item>
+        <item name="android:actionOverflowButtonStyle">@style/ActionButtonOverflowSterling</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Sterling</item>
         <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_bar</item>
 
@@ -74,6 +75,10 @@
     
     <style name="ActionButton.CloseMode.Sterling" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
         <item name="android:background">@drawable/btn_cab_done_sterling</item>
+    </style>
+
+    <style name="ActionButtonOverflowSterling" partent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_action_overflow</item>
     </style>
 
     <!-- this style is only referenced in a Light.DarkActionBar based theme -->

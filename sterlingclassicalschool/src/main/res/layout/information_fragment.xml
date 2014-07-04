@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent" >
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textColor="@color/SecondaryColor"
+            android:text="@string/info_title_vision"
+            android:id="@+id/tv_info_title_vision" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:paddingTop="@dimen/small_headline_and_body"
+            android:paddingBottom="@dimen/small_headline_and_body"
+            android:text="@string/info_text_vision"
+            android:id="@+id/tv_info_text_vision" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/info_title_desire"
+            android:id="@+id/tv_info_title_desire" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:paddingTop="@dimen/small_headline_and_body"
+            android:paddingBottom="@dimen/small_headline_and_body"
+            android:text="@string/info_text_desire"
+            android:id="@+id/tv_info_text_desire" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/info_title_mission"
+            android:id="@+id/tv_info_title_mission" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:paddingTop="@dimen/small_headline_and_body"
+            android:paddingBottom="@dimen/small_headline_and_body"
+            android:text="@string/info_text_mission"
+            android:id="@+id/tv_info_text_mission" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/info_title_model"
+            android:id="@+id/tv_info_title_model" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:paddingTop="@dimen/small_headline_and_body"
+            android:paddingBottom="@dimen/small_headline_and_body"
+            android:text="@string/info_text_model"
+            android:id="@+id/tv_info_text_model" />
+
+    </LinearLayout>
+
+</ScrollView>

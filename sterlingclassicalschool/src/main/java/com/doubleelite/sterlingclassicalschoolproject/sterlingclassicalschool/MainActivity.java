@@ -3,9 +3,12 @@ package com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -36,20 +39,41 @@ import java.util.Collections;
 public class MainActivity extends Activity {
 
     // Views
-    DrawerLayout drawerLayout;
-    ListView drawerList;
+    private DrawerLayout drawerLayout;
+    private ListView drawerList;
+    private ActionBarDrawerToggle drawerToggle;
 
     // Instance variables
-    String[] appPages;
+    private String[] appPages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // In order to change fragments later you must add them dynamically (not via XML)
+        // So here we setup which fragment we want to display first.
+        setInitialFragment(new NewsFragment());
+
         // Get Views
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawerList = (ListView)findViewById(R.id.lv_drawer_main);
+
+        // Set the actionbar icon for the drawer icon
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+            }
+            public void onDrawerOpen(View view) {
+                super.onDrawerOpened(view);
+            }
+        };
+
+        // Set the drawer toggle as the DrawerListener
+        drawerLayout.setDrawerListener(drawerToggle);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
         // Set adapters
         appPages = getResources().getStringArray(R.array.main_app_drawer_pages);
@@ -58,6 +82,19 @@ public class MainActivity extends Activity {
         // Set listener for drawer items
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -75,6 +112,8 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        } else if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -82,8 +121,44 @@ public class MainActivity extends Activity {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
+            switch (position) {
+                case 0:
+                    // Events \\
+                    break;
 
+                case 1:
+                    // Student Schedule \\
+                    break;
+
+                case 2:
+                    // Character Guide \\
+                    break;
+
+                case 3:
+                    // Information \\
+                    // Create a new fragment and replace any existing fragment with it
+                    Fragment fragment = new InformationFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                    transaction.replace(R.id.fragment_container, fragment);
+                    transaction.addToBackStack(null);
+
+                    transaction.commit();
+                    break;
+            }
+
+            // Highlight the selected item and close the drawer
+            drawerList.setItemChecked(position, true);
+            drawerLayout.closeDrawer(drawerList);
         }
+    }
+
+    private void setInitialFragment(Fragment fragment) {
+        // Create the fragment from the constructor and add it to the fragment container ViewGroup
+        Fragment initialFragment = fragment;
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, initialFragment);
+        transaction.commit();
     }
 
 }

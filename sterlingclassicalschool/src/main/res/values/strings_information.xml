@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="info_title_vision">Our Vision</string>
+    <string name="info_text_vision">Is to provide Northwest Austin and surrounding communities with a Christian, classical, independent, college-preparatory school that integrates Charlotte Mason hands-on experiences and complimentary curriculum. It is an academy where lifelong learning is dynamically cultivated involving the parent as an active teaching partner. </string>
+
+    <string name="info_title_desire">Our Desire</string>
+    <string name="info_text_desire">Is to utilize the vehicle of an advanced academic format schedule to promote scholastic excellence, foundational character development, strategic parental support and the gift of time for families to grow closer to God and each other. </string>
+    
+    <string name="info_title_mission">Our Mission</string>
+    <string name="info_text_mission">Is to partner with parents in the building of future generations with a Biblical, classical education, which results in passionate seekers of wisdom and knowledge, through Christ, who desire to bring honor and glory to God. While currently serving Preschool through 10th grade, we will add an additional grade each year through 12th grade.</string>
+    
+    <string name="info_title_model">Our Model</string>
+    <string name="info_text_model">Is to bring an innovative approach to education through the advanced academic format which has students attending classes on campus two or three days a week with the follow through of prepared lesson plans by Sterling instructors at home on the alternate days. This allows the parent to be an integral part of the students education experience.</string>
+    
+</resources>
