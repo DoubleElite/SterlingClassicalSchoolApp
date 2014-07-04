@@ -39,17 +39,28 @@ public class NewsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lvNewsItems = (ListView)getView().findViewById(R.id.lv_newsItems);
 
         // Initializing classes
         newsItems = new ArrayList<NewsItem>();
         context = getActivity();
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.news_fragment, container, false);
+        // Get the fragment view that we'll return after we get the other views from it
+        View v = inflater.inflate(R.layout.news_fragment, container, false);
+
+        // Get news item
+        lvNewsItems = (ListView)v.findViewById(R.id.lv_newsItems);
+
+        try {
+            URL url = new URL("http://feeds.feedburner.com/SterlingClassicalSchool?format=xml");
+            new URLAsyncTask().execute(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return v;
     }
 
     private class URLAsyncTask extends AsyncTask<URL, String, ArrayList<NewsItem>> {
