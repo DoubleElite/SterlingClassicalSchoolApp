@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import org.jsoup.Jsoup;
 import org.xmlpull.v1.XmlPullParser;
@@ -29,6 +30,7 @@ public class NewsFragment extends Fragment {
 
     // Views
     ListView lvNewsItems;
+    RelativeLayout loadingLayout;
 
     // Adapters
     NewsItemAdapter newsItemAdapter;
@@ -54,6 +56,7 @@ public class NewsFragment extends Fragment {
 
         // Get news item
         lvNewsItems = (ListView)v.findViewById(R.id.lv_newsItems);
+        loadingLayout = (RelativeLayout)v.findViewById(R.id.loading_layout_news_fragment);
 
         try {
             URL url = new URL("http://feeds.feedburner.com/SterlingClassicalSchool?format=xml");
@@ -143,6 +146,9 @@ public class NewsFragment extends Fragment {
             Log.v("APP", "Done downloading now parse it");
             newsItemAdapter = new NewsItemAdapter(context, R.layout.news_item, newsItem);
             lvNewsItems.setAdapter(newsItemAdapter);
+
+            // Remove the loading icon and relative layout it is nestled in
+            loadingLayout.setVisibility(View.GONE);
         }
     }
 
