@@ -9,12 +9,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"
-            android:textColor="@color/SecondaryColor"
+            style="@style/FontHeader"
             android:text="@string/info_title_vision"
             android:id="@+id/tv_info_title_vision" />
 
@@ -28,9 +23,7 @@
             android:id="@+id/tv_info_text_vision" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            style="@style/FontHeader"
             android:text="@string/info_title_desire"
             android:id="@+id/tv_info_title_desire" />
 
@@ -44,9 +37,7 @@
             android:id="@+id/tv_info_text_desire" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            style="@style/FontHeader"
             android:text="@string/info_title_mission"
             android:id="@+id/tv_info_title_mission" />
 
@@ -60,9 +51,7 @@
             android:id="@+id/tv_info_text_mission" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            style="@style/FontHeader"
             android:text="@string/info_title_model"
             android:id="@+id/tv_info_title_model" />
 

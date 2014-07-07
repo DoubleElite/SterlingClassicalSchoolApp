@@ -55,6 +55,9 @@ public class MainActivity extends Activity {
         // So here we setup which fragment we want to display first.
         setInitialFragment(new NewsFragment());
 
+        // Set the pages for the app drawer
+        appPages = getResources().getStringArray(R.array.main_app_drawer_pages);
+
         // Get Views
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawerList = (ListView)findViewById(R.id.lv_drawer_main);
@@ -72,12 +75,13 @@ public class MainActivity extends Activity {
         // Set the drawer toggle as the DrawerListener
         drawerLayout.setDrawerListener(drawerToggle);
 
+        // Show the action bar icon
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
 
         // Set adapters
-        appPages = getResources().getStringArray(R.array.main_app_drawer_pages);
-        drawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appPages));
+        DrawerItemAdapter drawerItemAdapter = new DrawerItemAdapter(this, R.layout.drawer_item, appPages);
+        drawerList.setAdapter(drawerItemAdapter);
 
         // Set listener for drawer items
         drawerList.setOnItemClickListener(new DrawerItemClickListener());

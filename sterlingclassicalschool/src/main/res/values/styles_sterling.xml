@@ -77,8 +77,16 @@
         <item name="android:background">@drawable/btn_cab_done_sterling</item>
     </style>
 
-    <style name="ActionButtonOverflowSterling" partent="@android:style/Widget.Holo.ActionButton.Overflow">
+    <style name="ActionButtonOverflowSterling" parent="@android:style/Widget.Holo.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_action_overflow</item>
+    </style>
+    
+    <style name="FontHeader" parent="@android:style/TextAppearance.Large">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/PrimaryColor</item>
     </style>
 
     <!-- this style is only referenced in a Light.DarkActionBar based theme -->
