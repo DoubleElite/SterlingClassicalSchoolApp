@@ -106,13 +106,6 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -160,8 +153,11 @@ public class MainActivity extends Activity {
                     break;
             }
 
+            // Set the action bar title to the new page
             getActionBar().setTitle(appPages[position]);
-            // Finish the transaction process and show the new fragment
+
+            // Finish the transaction process and show the new fragment with a transition
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             transaction.commit();
 
             // Highlight the selected item and close the drawer
