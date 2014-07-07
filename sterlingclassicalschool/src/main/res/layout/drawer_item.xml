@@ -7,8 +7,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Large Text"
+        android:fontFamily="sans-serif"
+        android:textAllCaps="false"
+        android:paddingTop="@dimen/drawer_listview_item_padding"
+        android:paddingBottom="@dimen/drawer_listview_item_padding"
         android:textColor="@color/WhiteSmoke"
         android:id="@+id/tv_drawer_item" />
 

@@ -8,4 +8,5 @@
     <dimen name="navigation_drawer_width">240dp</dimen>
 
     <dimen name="small_headline_and_body">8dp</dimen>
+    <dimen name="drawer_listview_item_padding">16dp</dimen>
 </resources>

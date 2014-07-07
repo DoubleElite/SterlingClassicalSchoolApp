@@ -45,6 +45,7 @@ public class MainActivity extends Activity {
 
     // Instance variables
     private String[] appPages;
+    private String appTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +56,9 @@ public class MainActivity extends Activity {
         // So here we setup which fragment we want to display first.
         setInitialFragment(new NewsFragment());
 
-        // Set the pages for the app drawer
+        // Set the pages for the app drawer and set the app title
         appPages = getResources().getStringArray(R.array.main_app_drawer_pages);
+        appTitle = "Sterling";
 
         // Get Views
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -66,9 +68,11 @@ public class MainActivity extends Activity {
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
+                //getActionBar().setTitle("Title");
             }
             public void onDrawerOpen(View view) {
                 super.onDrawerOpened(view);
+                //getActionBar().setTitle(appTitle);
             }
         };
 
@@ -125,9 +129,17 @@ public class MainActivity extends Activity {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
+            // Get the FragmentTransaction so we can replace/add fragments
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
             switch (position) {
                 case 0:
                     // Events \\
+                    // Create a new fragment and replace any existing fragment with it
+                    Fragment newsFragment = new NewsFragment();
+
+                    transaction.replace(R.id.fragment_container, newsFragment);
+                    transaction.addToBackStack(null);
                     break;
 
                 case 1:
@@ -141,15 +153,16 @@ public class MainActivity extends Activity {
                 case 3:
                     // Information \\
                     // Create a new fragment and replace any existing fragment with it
-                    Fragment fragment = new InformationFragment();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    Fragment informationFragment = new InformationFragment();
 
-                    transaction.replace(R.id.fragment_container, fragment);
+                    transaction.replace(R.id.fragment_container, informationFragment);
                     transaction.addToBackStack(null);
-
-                    transaction.commit();
                     break;
             }
+
+            getActionBar().setTitle(appPages[position]);
+            // Finish the transaction process and show the new fragment
+            transaction.commit();
 
             // Highlight the selected item and close the drawer
             drawerList.setItemChecked(position, true);
