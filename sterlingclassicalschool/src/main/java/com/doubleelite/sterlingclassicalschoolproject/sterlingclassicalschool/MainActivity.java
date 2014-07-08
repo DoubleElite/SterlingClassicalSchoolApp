@@ -45,20 +45,22 @@ public class MainActivity extends Activity {
 
     // Instance variables
     private String[] appPages;
-    private String appTitle;
+    private String titleMainApp;
+    private String titlePage;
+    private String titleCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // In order to change fragments later you must add them dynamically (not via XML)
         // So here we setup which fragment we want to display first.
-        setInitialFragment(new NewsFragment());
+        setInitialFragment(new NewsFragment(), "Events");
 
         // Set the pages for the app drawer and set the app title
         appPages = getResources().getStringArray(R.array.main_app_drawer_pages);
-        appTitle = "Sterling";
+        titlePage = appPages[0];
+        titleMainApp = "Sterling";
 
         // Get Views
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -68,11 +70,15 @@ public class MainActivity extends Activity {
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                //getActionBar().setTitle("Title");
+                // Get the current page title and set it as the main title
+                titleCurrent = titlePage;
+                getActionBar().setTitle(titleCurrent);
             }
-            public void onDrawerOpen(View view) {
+            public void onDrawerOpened(View view) {
                 super.onDrawerOpened(view);
-                //getActionBar().setTitle(appTitle);
+                // Get the main app title and set it as the main title
+                titleCurrent = titleMainApp;
+                getActionBar().setTitle(titleCurrent);
             }
         };
 
@@ -154,7 +160,9 @@ public class MainActivity extends Activity {
             }
 
             // Set the action bar title to the new page
-            getActionBar().setTitle(appPages[position]);
+            titlePage = appPages[position];
+            titleCurrent = titlePage;
+            getActionBar().setTitle(titleCurrent);
 
             // Finish the transaction process and show the new fragment with a transition
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -166,12 +174,13 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void setInitialFragment(Fragment fragment) {
+    private void setInitialFragment(Fragment fragment, String initialTitle) {
         // Create the fragment from the constructor and add it to the fragment container ViewGroup
         Fragment initialFragment = fragment;
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, initialFragment);
         transaction.commit();
+        getActionBar().setTitle(initialTitle);
     }
 
 }

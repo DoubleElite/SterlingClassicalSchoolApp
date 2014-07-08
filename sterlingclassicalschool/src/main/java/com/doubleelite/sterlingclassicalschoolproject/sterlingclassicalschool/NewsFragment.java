@@ -2,6 +2,8 @@ package com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.xmlpull.v1.XmlPullParser;
@@ -136,18 +139,20 @@ public class NewsFragment extends Fragment {
                 e.printStackTrace();
             }
             // This is the only way I know of showing the most recently added items in the calender at the top
-            // If this wasn't here the newest items would be at the bottom
+            // If this wasn't here the newest items would be at the bottom.
             Collections.reverse(newsItems);
             return newsItems;
         }
 
+        // This method has access to the UI and is ran after everything is done in the background
         @Override
         protected void onPostExecute(ArrayList<NewsItem> newsItem) {
-            Log.v("APP", "Done downloading now parse it");
             newsItemAdapter = new NewsItemAdapter(context, R.layout.news_item, newsItem);
             lvNewsItems.setAdapter(newsItemAdapter);
-
-            // Remove the loading icon and relative layout it is nestled in
+            // Was there any connection? If not nothing in the background task would work
+            // So it would skip right to onPostExecute. And we'll tell the user that there is no connection.
+            isOnline();
+            // Remove the loading icon and relative layout it is nestled in.
             loadingLayout.setVisibility(View.GONE);
         }
     }
@@ -155,14 +160,27 @@ public class NewsFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        // This must be called to have the option menu show up
+        // This must be called to have the option menu show up.
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        // Inflate the menu resource we want to use
+        // Inflate the menu resource we want to use.
         inflater.inflate(R.menu.main, menu);
     }
+
+    // This method just checks if there is a connection to use and returns true if there is.
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        // Show a toast that there is no connection so the user knows.
+        Toast.makeText(context, "No internet connection. Try again later.", Toast.LENGTH_LONG).show();
+        return false;
+    }
+
 }
