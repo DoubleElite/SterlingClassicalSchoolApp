@@ -18,6 +18,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.parse.Parse;
+import com.parse.ParseInstallation;
+import com.parse.PushService;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -53,6 +57,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Setup Parse for push notifications
+        Parse.initialize(this, "dbgMLg4QssgeHn6ogl9qcorJ74IYWBO29d731nqn", "QUNUh1yKcSBfIko45FDOVvPid7oakpmZzllNsnkF");
+        PushService.setDefaultPushCallback(this, MainActivity.class);
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+
         // In order to change fragments later you must add them dynamically (not via XML)
         // So here we setup which fragment we want to display first.
         setInitialFragment(new NewsFragment(), "Events");
