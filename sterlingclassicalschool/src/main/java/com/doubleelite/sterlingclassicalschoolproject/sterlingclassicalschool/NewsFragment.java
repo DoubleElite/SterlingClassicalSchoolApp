@@ -6,9 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -168,7 +165,7 @@ public class NewsFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         // Inflate the menu resource we want to use.
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.news_actions, menu);
     }
 
     // This method just checks if there is a connection to use and returns true if there is.

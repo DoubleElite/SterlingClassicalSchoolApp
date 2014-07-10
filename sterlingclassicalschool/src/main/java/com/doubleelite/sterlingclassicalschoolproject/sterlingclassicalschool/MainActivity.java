@@ -75,15 +75,17 @@ public class MainActivity extends Activity {
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                // Get the current page title and set it as the main title
+                // Get the current page title and set it as the news_actions title
                 titleCurrent = titlePage;
                 getActionBar().setTitle(titleCurrent);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
             public void onDrawerOpened(View view) {
                 super.onDrawerOpened(view);
-                // Get the main app title and set it as the main title
+                // Get the news_actions app title and set it as the news_actions title
                 titleCurrent = titleMainApp;
                 getActionBar().setTitle(titleCurrent);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
 
@@ -121,10 +123,7 @@ public class MainActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (drawerToggle.onOptionsItemSelected(item)) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -177,6 +176,15 @@ public class MainActivity extends Activity {
             drawerList.setItemChecked(position, true);
             drawerLayout.closeDrawer(drawerList);
         }
+    }
+
+    /* Called whenever we call invalidateOptionsMenu() */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // If the nav drawer is open, hide action items related to the content view
+        boolean drawerOpen = drawerLayout.isDrawerOpen(drawerList);
+        menu.findItem(R.id.action_refresh).setVisible(!drawerOpen);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     private void setInitialFragment(Fragment fragment, String initialTitle) {
