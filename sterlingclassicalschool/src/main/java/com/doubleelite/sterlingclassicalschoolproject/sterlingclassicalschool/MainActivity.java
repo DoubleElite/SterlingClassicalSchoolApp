@@ -58,11 +58,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Setup Parse for push notifications
-        Parse.initialize(this, "dbgMLg4QssgeHn6ogl9qcorJ74IYWBO29d731nqn", "QUNUh1yKcSBfIko45FDOVvPid7oakpmZzllNsnkF");
-        PushService.setDefaultPushCallback(this, MainActivity.class);
-        ParseInstallation.getCurrentInstallation().saveInBackground();
-
         // In order to change fragments later you must add them dynamically (not via XML)
         // So here we setup which fragment we want to display first.
         setInitialFragment(new NewsFragment(), "Events");
