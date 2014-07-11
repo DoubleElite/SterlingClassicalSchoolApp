@@ -147,19 +147,30 @@ public class MainActivity extends Activity {
 
                 case 1:
                     // Student Schedule \\
+
                     break;
 
                 case 2:
-                    // Character Guide \\
-                    break;
-
-                case 3:
-                    // Information \\
+                    // Our Goals (Information) \\
                     // Create a new fragment and replace any existing fragment with it
                     Fragment informationFragment = new InformationFragment();
 
                     transaction.replace(R.id.fragment_container, informationFragment);
                     transaction.addToBackStack(null);
+                    break;
+
+                case 3:
+                    // Admissions \\
+                    // Create a new fragment and replace any existing fragment with it
+                    Fragment admissionsFragment = new AdmissionsFragment();
+
+                    transaction.replace(R.id.fragment_container, admissionsFragment);
+                    transaction.addToBackStack(null);
+                    break;
+
+                case 4:
+                    // Contact Us \\
+
                     break;
             }
 
@@ -181,9 +192,15 @@ public class MainActivity extends Activity {
     /* Called whenever we call invalidateOptionsMenu() */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        // If the nav drawer is open, hide action items related to the content view
+        // If the nav drawer is open, hide action items related to the content view.
         boolean drawerOpen = drawerLayout.isDrawerOpen(drawerList);
-        menu.findItem(R.id.action_refresh).setVisible(!drawerOpen);
+        // Wrap in a try catch because if one of the items is removed by removing a fragment
+        // Then it will throw an error and crash.
+        try {
+            menu.findItem(R.id.action_refresh).setVisible(!drawerOpen);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return super.onPrepareOptionsMenu(menu);
     }
 

@@ -4,7 +4,8 @@
         name="main_app_drawer_pages">
         <item>Events</item>
         <item>Student Schedule</item>
-        <item>Character Guide</item>
-        <item>Information</item>
+        <item>Our Goals</item>
+        <item>Admissions</item>
+        <item>Contact Us</item>
     </array>
 </resources>

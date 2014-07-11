@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="admissions_title_attend">1. Attend an admissions presentation/tour</string>
+    <string name="admissions_text_attend">Parents are required to attend one of these designated meetings, which will be held at scheduled times. Admission packets may only be obtained at these meetings.</string>
+
+    <string name="admissions_title_read">2.	Read/Pray/Complete Forms</string>
+    <string name="admissions_text_read">Read required book on Classical and Christian education, in addition to becoming familiar with the Charlotte Mason philosophy. Prayerfully consider your family’s needs for education and whether those needs would be best met by Sterling Classical School. If you decide to enroll, refer to the instructions and forms included in the admissions packet.</string>
+    
+    <string name="admissions_title_family">3. Family Interview</string>
+    <string name="admissions_text_family">Once the admissions packet is received and references are contacted, each family will set up a family interview for the purpose of discussing the compatibility of family goals and the school’s methods and philosophy. Parents will need to have read the required reading prior to the scheduling of a family interview.</string>
+    
+    <string name="admissions_title_placement">4. Placement Testing</string>
+    <string name="admissions_text_placement">Your child will participate in placement testing, typically scheduled after the family interview. Any recent test scores may be submitted for review. Additional testing may be required at the school’s discretion.</string>
+
+    <string name="admissions_title_acceptance">5. Acceptance</string>
+    <string name="admissions_text_acceptance">Sterling sends an acceptance letter along with a course registration request form. Upon return of the course registration form, your child will receive a registration confirmation along with an invoice for tuition. Tuition must be paid in full or a tuition plan must be set-up with FACTS within ten days in order for your child’s registration to be completed. Acceptance and registration does not automatically confirm a requested course schedule.</string>
+    
+    <string name="admissions_title_finalize">6.	Finalize Schedule</string>
+    <string name="admissions_text_finalize">Before the first week of classes, you will receive a Course Schedule Confirmation with your child’s course schedule and room/teacher assignments.</string>
+</resources>
