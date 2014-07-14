@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed>
-<title type="text">Sterling Classical School - Events</title>
-    <item>
-        <title>"This is a test title"</title>
-        <pubDate>"Aug 21 2014 5:00pm"</pubDate>
-        <description>"Here is some text and more text and more"</description>
-    </item>
-</feed>

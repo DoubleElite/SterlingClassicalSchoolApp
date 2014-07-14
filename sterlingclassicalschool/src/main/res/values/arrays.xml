@@ -8,4 +8,10 @@
         <item>Admissions</item>
         <item>Contact Us</item>
     </array>
+    <array name="schedule_grade_list">
+        <item>9th Grade</item>
+        <item>10th Grade</item>
+        <item>11th Grade</item>
+        <item>12th Grade</item>
+    </array>
 </resources>

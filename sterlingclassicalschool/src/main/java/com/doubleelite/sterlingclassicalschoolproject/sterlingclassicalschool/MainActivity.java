@@ -147,7 +147,11 @@ public class MainActivity extends Activity {
 
                 case 1:
                     // Student Schedule \\
+                    // Create a new fragment and replace any existing fragment with it
+                    Fragment scheduleFragment = new ScheduleFragment();
 
+                    transaction.replace(R.id.fragment_container, scheduleFragment);
+                    transaction.addToBackStack(null);
                     break;
 
                 case 2:
@@ -170,7 +174,11 @@ public class MainActivity extends Activity {
 
                 case 4:
                     // Contact Us \\
+                    // Create a new fragment and replace any existing fragment with it
+                    Fragment contactFragment = new ContactFragment();
 
+                    transaction.replace(R.id.fragment_container, contactFragment);
+                    transaction.addToBackStack(null);
                     break;
             }
 

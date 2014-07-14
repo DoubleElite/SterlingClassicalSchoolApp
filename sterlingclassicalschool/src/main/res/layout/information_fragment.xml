@@ -13,56 +13,56 @@
             android:text="@string/info_title_vision"
             android:id="@+id/tv_info_title_vision" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:paddingTop="@dimen/small_headline_and_body"
-            android:paddingBottom="@dimen/small_headline_and_body"
-            android:text="@string/info_text_vision"
-            android:id="@+id/tv_info_text_vision" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:paddingTop="@dimen/small_headline_and_body"
+                android:paddingBottom="@dimen/small_headline_and_body"
+                android:text="@string/info_text_vision"
+                android:id="@+id/tv_info_text_vision" />
 
         <TextView
             style="@style/FontHeader"
             android:text="@string/info_title_desire"
             android:id="@+id/tv_info_title_desire" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:paddingTop="@dimen/small_headline_and_body"
-            android:paddingBottom="@dimen/small_headline_and_body"
-            android:text="@string/info_text_desire"
-            android:id="@+id/tv_info_text_desire" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:paddingTop="@dimen/small_headline_and_body"
+                android:paddingBottom="@dimen/small_headline_and_body"
+                android:text="@string/info_text_desire"
+                android:id="@+id/tv_info_text_desire" />
 
         <TextView
             style="@style/FontHeader"
             android:text="@string/info_title_mission"
             android:id="@+id/tv_info_title_mission" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:paddingTop="@dimen/small_headline_and_body"
-            android:paddingBottom="@dimen/small_headline_and_body"
-            android:text="@string/info_text_mission"
-            android:id="@+id/tv_info_text_mission" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:paddingTop="@dimen/small_headline_and_body"
+                android:paddingBottom="@dimen/small_headline_and_body"
+                android:text="@string/info_text_mission"
+                android:id="@+id/tv_info_text_mission" />
 
         <TextView
             style="@style/FontHeader"
             android:text="@string/info_title_model"
             android:id="@+id/tv_info_title_model" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:paddingTop="@dimen/small_headline_and_body"
-            android:paddingBottom="@dimen/small_headline_and_body"
-            android:text="@string/info_text_model"
-            android:id="@+id/tv_info_text_model" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:paddingTop="@dimen/small_headline_and_body"
+                android:paddingBottom="@dimen/small_headline_and_body"
+                android:text="@string/info_text_model"
+                android:id="@+id/tv_info_text_model" />
 
     </LinearLayout>
 
