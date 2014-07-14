@@ -9,7 +9,7 @@
         android:layout_height="fill_parent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/tablelayout_item_width"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="201"
@@ -22,7 +22,6 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             style="@style/FontHeader"
             android:text="Biology"
-            android:paddingLeft="@dimen/small_headline_and_body"
             android:id="@+id/tv_class_subject"
             android:layout_column="1" />
 
@@ -38,7 +37,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:fontFamily="sans-serif-thin"
             android:text="8:00 - 8:55"
-            android:paddingLeft="@dimen/small_headline_and_body"
             android:id="@+id/tv_class_time"
             android:layout_column="1" />
 

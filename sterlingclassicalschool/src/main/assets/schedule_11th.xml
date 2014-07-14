@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed>
+    <title type="text">Rhetoric(9th) Schedule</title>
+
+    <!-- MONDAY -->
+    <!-- TODO: Add color(int rbg) to the color tags instead of strings -->
+
+    <class>
+        <day>Monday</day>
+        <grade>11</grade>
+        <subject>Pre-Calculus</subject>
+        <time>8:00 - 8:55</time>
+        <room>201</room>
+        <color>orange</color>
+    </class>
+    <class>
+        <day>Monday</day>
+        <grade>11</grade>
+        <subject>Leadership/House</subject>
+        <time>9:00 - 9:55</time>
+        <room>NA</room>
+        <color>gray</color>
+    </class>
+    <class>
+        <day>Monday</day>
+        <grade>11</grade>
+        <subject>Physics</subject>
+        <time>10:00 - 10:55</time>
+        <room>111</room>
+        <color>blue</color>
+    </class>
+    <class>
+        <day>Monday</day>
+        <grade>11</grade>
+        <subject>History IV</subject>
+        <time>11:00 - 11:55</time>
+        <room>203</room>
+        <color>green</color>
+    </class>
+    <class>
+        <day>Monday</day>
+        <grade>11</grade>
+        <subject>Lunch</subject>
+        <time>12:00 - 12:30</time>
+        <room>NA</room>
+        <color>white</color>
+    </class>
+    <class>
+        <day>Monday</day>
+        <grade>11</grade>
+        <subject>English IV</subject>
+        <time>12:35 - 1:30</time>
+        <room>202</room>
+        <color>pink</color>
+    </class>
+    <class>
+        <day>Monday</day>
+        <grade>11</grade>
+        <subject>Speech/Debate, Cheer, Study Hall</subject>
+        <time>1:35 - 3:00</time>
+        <room>NA</room>
+        <color>yellow</color>
+    </class>
+
+    <!-- WEDNESDAY -->
+
+    <class>
+        <day>Wednesday</day>
+        <grade>11</grade>
+        <subject>STEPS (Tutoring)</subject>
+        <time>9:00 - 2:00</time>
+        <room>201</room>
+        <color>light_blue</color>
+    </class>
+
+    <!-- TUESDAY/THURSDAY -->
+
+    <class>
+        <day>Tuesday/Thursday</day>
+        <grade>11</grade>
+        <subject>Pre-Calculus</subject>
+        <time>8:00 - 9:00</time>
+        <room>201</room>
+        <color>orange</color>
+    </class>
+    <class>
+        <day>Tuesday/Thursday</day>
+        <grade>11</grade>
+        <subject>Physics</subject>
+        <time>9:00 - 10:05</time>
+        <room>111</room>
+        <color>blue</color>
+    </class>
+    <class>
+        <day>Tuesday/Thursday</day>
+        <grade>11</grade>
+        <subject>BREAK</subject>
+        <time>10:05 - 10:20</time>
+        <room>NA</room>
+        <color>white</color>
+    </class>
+    <class>
+        <day>Tuesday/Thursday</day>
+        <grade>11</grade>
+        <subject>Study Hall</subject>
+        <time>10:25 - 11:40</time>
+        <room>NA</room>
+        <color>yellow</color>
+    </class>
+    <class>
+        <day>Tuesday/Thursday</day>
+        <grade>11</grade>
+        <subject>History IV/Humanities</subject>
+        <time>11:45 - 12:45</time>
+        <room>203</room>
+        <color>green</color>
+    </class>
+    <class>
+        <day>Tuesday/Thursday</day>
+        <grade>11</grade>
+        <subject>Lunch</subject>
+        <time>12:50 - 1:20</time>
+        <room>NA</room>
+        <color>white</color>
+    </class>
+    <class>
+        <day>Tuesday/Thursday</day>
+        <grade>11</grade>
+        <subject>English IV</subject>
+        <time>1:25 - 2:30</time>
+        <room>202</room>
+        <color>pink</color>
+    </class>
+    <class>
+        <day>Tuesday/Thursday</day>
+        <grade>11</grade>
+        <subject>Spanish 2, Latin 2, Yearbook, Trl Lab, Theater</subject>
+        <time>2:35 - 3:30</time>
+        <room>111</room>
+        <color>yellow</color>
+    </class>
+
+</feed>

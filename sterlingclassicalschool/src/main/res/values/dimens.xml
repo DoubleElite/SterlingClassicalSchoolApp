@@ -9,4 +9,5 @@
 
     <dimen name="small_headline_and_body">8dp</dimen>
     <dimen name="drawer_listview_item_padding">16dp</dimen>
+    <dimen name="tablelayout_item_width">40dp</dimen>
 </resources>

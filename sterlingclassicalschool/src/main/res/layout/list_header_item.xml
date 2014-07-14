@@ -2,16 +2,16 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="32dp"
-    android:background="@color/SlateGray">
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/SecondaryColor"
-        android:text="Medium Text"
+        android:textSize="20sp"
+        android:textAllCaps="true"
+        android:text="Monday"
         android:id="@+id/tv_list_header" />
 
 </LinearLayout>

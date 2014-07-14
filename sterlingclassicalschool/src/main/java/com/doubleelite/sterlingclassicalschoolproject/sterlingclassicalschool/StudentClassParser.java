@@ -35,7 +35,7 @@ public class StudentClassParser {
 
                     case XmlPullParser.START_TAG:
                         if(tagName.equalsIgnoreCase("class")) {
-                            // Make a new class object
+                            // Make a new class object since we are at the start of the class tag
                             studentClass = new StudentClass();
                         }
                         break;
@@ -45,7 +45,9 @@ public class StudentClassParser {
                         break;
 
                     case XmlPullParser.END_TAG:
-                        if(tagName.equalsIgnoreCase("grade")) {
+                        if(tagName.equalsIgnoreCase("day")) {
+                            studentClass.day = parserText;
+                        } else if(tagName.equalsIgnoreCase("grade")) {
                             studentClass.grade = Integer.parseInt(parserText);
                         } else if (tagName.equalsIgnoreCase("subject")) {
                             studentClass.subject = parserText;
