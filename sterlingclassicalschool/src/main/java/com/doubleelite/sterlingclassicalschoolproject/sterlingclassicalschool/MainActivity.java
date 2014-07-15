@@ -1,5 +1,6 @@
 package com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,10 +55,16 @@ public class MainActivity extends Activity {
     private String titlePage;
     private String titleCurrent;
 
+    // Application
+    private ActionBar actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Get the actionbar
+        actionBar = getActionBar();
 
         // In order to change fragments later you must add them dynamically (not via XML)
         // So here we setup which fragment we want to display first.
@@ -77,14 +85,14 @@ public class MainActivity extends Activity {
                 super.onDrawerClosed(view);
                 // Get the current page title and set it as the news_actions title
                 titleCurrent = titlePage;
-                getActionBar().setTitle(titleCurrent);
+                actionBar.setTitle(titleCurrent);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
             public void onDrawerOpened(View view) {
                 super.onDrawerOpened(view);
                 // Get the news_actions app title and set it as the news_actions title
                 titleCurrent = titleMainApp;
-                getActionBar().setTitle(titleCurrent);
+                actionBar.setTitle(titleCurrent);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
@@ -93,8 +101,8 @@ public class MainActivity extends Activity {
         drawerLayout.setDrawerListener(drawerToggle);
 
         // Show the action bar icon
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         // Set adapters
         DrawerItemAdapter drawerItemAdapter = new DrawerItemAdapter(this, R.layout.drawer_item, appPages);
@@ -102,6 +110,13 @@ public class MainActivity extends Activity {
 
         // Set listener for drawer items
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+        getFragmentManager().addOnBackStackChangedListener(
+                new FragmentManager.OnBackStackChangedListener() {
+                    public void onBackStackChanged() {
+
+                    }
+                });
 
     }
 
@@ -185,7 +200,7 @@ public class MainActivity extends Activity {
             // Set the action bar title to the new page
             titlePage = appPages[position];
             titleCurrent = titlePage;
-            getActionBar().setTitle(titleCurrent);
+            actionBar.setTitle(titleCurrent);
 
             // Finish the transaction process and show the new fragment with a transition
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -218,7 +233,12 @@ public class MainActivity extends Activity {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, initialFragment);
         transaction.commit();
-        getActionBar().setTitle(initialTitle);
+        actionBar.setTitle(initialTitle);
     }
 
+    // When the user presses back we want the title to update to match the fragment
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

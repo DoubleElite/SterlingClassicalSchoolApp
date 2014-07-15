@@ -9,4 +9,10 @@
 
     <string name="title_activity_main">Sterling</string>
 
+    <string name="fragment_title_schedule">Student Schedule</string>
+    <string name="fragment_title_events">Events</string>
+    <string name="fragment_title_our_goals">Our Goals</string>
+    <string name="fragment_title_admissions">Admissions</string>
+    <string name="fragment_title_contact_us">Contact Us</string>
+
 </resources>

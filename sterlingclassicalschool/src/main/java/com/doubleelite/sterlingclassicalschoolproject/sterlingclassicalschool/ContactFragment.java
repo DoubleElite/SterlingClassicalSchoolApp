@@ -31,4 +31,13 @@ public class ContactFragment extends Fragment {
         });
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Set title. We do that here because if the user presses the back button
+        // to get back to this fragment we need to update the title from the previous title.
+        getActivity().getActionBar()
+                .setTitle(R.string.fragment_title_contact_us);
+    }
 }

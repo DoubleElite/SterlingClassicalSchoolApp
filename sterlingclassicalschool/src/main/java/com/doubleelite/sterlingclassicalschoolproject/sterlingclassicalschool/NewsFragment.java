@@ -6,9 +6,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -40,6 +42,9 @@ public class NewsFragment extends Fragment {
     NewsItem item;
     Context context;
 
+    // Instance
+    Boolean isDownloading = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,12 +63,8 @@ public class NewsFragment extends Fragment {
         lvNewsItems = (ListView)v.findViewById(R.id.lv_newsItems);
         loadingLayout = (RelativeLayout)v.findViewById(R.id.loading_layout_news_fragment);
 
-        try {
-            URL url = new URL("http://feeds.feedburner.com/SterlingClassicalSchool?format=xml");
-            new URLAsyncTask().execute(url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        // Get the news items
+        downloadNewsItems();
 
         return v;
     }
@@ -148,7 +149,9 @@ public class NewsFragment extends Fragment {
             lvNewsItems.setAdapter(newsItemAdapter);
             // Was there any connection? If not nothing in the background task would work
             // So it would skip right to onPostExecute. And we'll tell the user that there is no connection.
-            isOnline();
+            // We also have to do this here because in order to access the Toast class you need to be on the UI Thread.
+            checkWorkingNetworkStatus();
+            isDownloading = false;
             // Remove the loading icon and relative layout it is nestled in.
             loadingLayout.setVisibility(View.GONE);
         }
@@ -164,12 +167,32 @@ public class NewsFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        // Clear the menu before adding new items. Otherwise there is a chance you will have duplicate items.
+        menu.clear();
         // Inflate the menu resource we want to use.
         inflater.inflate(R.menu.news_actions, menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_refresh) {
+            downloadNewsItems();
+            Toast.makeText(context, "Refreshing Data", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Set title. We do that here because if the user presses the back button
+        // to get back to this fragment we need to update the title from the previous title.
+        getActivity().getActionBar()
+                .setTitle(R.string.fragment_title_events);
+    }
+
     // This method just checks if there is a connection to use and returns true if there is.
-    public boolean isOnline() {
+    public boolean checkWorkingNetworkStatus() {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         if (netInfo != null && netInfo.isConnectedOrConnecting()) {
@@ -178,6 +201,19 @@ public class NewsFragment extends Fragment {
         // Show a toast that there is no connection so the user knows.
         Toast.makeText(context, "No internet connection. Try again later.", Toast.LENGTH_LONG).show();
         return false;
+    }
+
+    private void downloadNewsItems() {
+        // If we aren't already downloading anything to go ahead and get the items again.
+        if (!isDownloading) {
+            try {
+                URL url = new URL("http://feeds.feedburner.com/SterlingClassicalSchool?format=xml");
+                new URLAsyncTask().execute(url);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+        isDownloading = true;
     }
 
 }
