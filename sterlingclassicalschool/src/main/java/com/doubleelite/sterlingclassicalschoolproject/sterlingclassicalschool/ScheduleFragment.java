@@ -18,14 +18,19 @@ import java.util.Collection;
 
 public class ScheduleFragment extends ListFragment implements ActionBar.OnNavigationListener {
 
+    // Classes
     ArrayList<StudentClass> studentClasses;
 
+    // Adapters
     StudentClassAdapter adapter;
     SimpleSectionAdapter<StudentClass> sectionAdapter;
 
+    // Parsers
     StudentClassParser parser;
 
+    // Application
     Context context;
+    ActionBar actionBar;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
 
         // Get the context from the main activity.
         context = getActivity();
+        actionBar = getActivity().getActionBar();
 
         // Create a new parser
         parser = new StudentClassParser();
@@ -46,13 +52,14 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
         // Set the adapter for ListFragment we are using.
         setListAdapter(sectionAdapter);
 
-
+        // Create the adapter for the action dropdown (select different grades)
         SpinnerAdapter spinnerAdapter = ArrayAdapter.createFromResource(context,
                 R.array.schedule_grade_list,
                 android.R.layout.simple_spinner_dropdown_item);
 
-        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        getActivity().getActionBar().setListNavigationCallbacks(spinnerAdapter, this);
+        // Show the action dropdown list and set the adapter
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        actionBar.setListNavigationCallbacks(spinnerAdapter, this);
     }
 
     @Override
@@ -60,19 +67,19 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
         switch (position) {
             // 9th Grade \\
             case 0:
-                //setClassSchedule("schedule_9th.xml");
+                setClassSchedule("schedule_9th.xml");
                 break;
             // 10th Grade \\
             case 1:
-
+                setClassSchedule("schedule_10th.xml");
                 break;
             // 11th Grade \\
             case 2:
-
+                setClassSchedule("schedule_11th.xml");
                 break;
             // 12th Grade \\
             case 3:
-
+                setClassSchedule("schedule_12th.xml");
                 break;
         }
         return true;
@@ -82,6 +89,7 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
     public void setClassSchedule(String scheduleResourceName) {
         // Parse the xml file we passed through and set the contents (which returns an arraylist) to out studentclasses arraylist.
         try {
+            // Remove the current schedule and then set it equal to the new one.
             studentClasses.clear();
             studentClasses = parser.parse(context.getAssets().open(scheduleResourceName));
         } catch (IOException e) {
@@ -99,6 +107,15 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    // onStop() is called when a fragment is invisible.
+    @Override
+    public void onStop() {
+        super.onStop();
+        // So we want to hide the action dropdown spinner since we only need in this fragment.
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
     }
 
     // Inner class for handling the sectionizer

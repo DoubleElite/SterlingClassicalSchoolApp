@@ -19,74 +19,71 @@
 
 <resources>
 
-    <style name="Theme.Sterling" parent="@android:style/Theme.Holo.Light">
+    <style name="Theme.Sterling" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarItemBackground">@drawable/selectable_background_sterling</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Sterling</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Sterling</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Sterling</item>
         <item name="android:actionDropDownStyle">@style/DropDownNav.Sterling</item>
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Sterling</item>
         <item name="android:actionModeBackground">@drawable/cab_background_top_sterling</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_sterling</item>
-        <item name="android:actionOverflowButtonStyle">@style/ActionButtonOverflowSterling</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Sterling</item>
-        <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_bar</item>
+        
+                <!-- Light.DarkActionBar specific -->
+        <item name="android:actionBarWidgetTheme">@style/Theme.Sterling.Widget</item>
 
     </style>
 
-    <style name="ActionBar.Solid.Sterling" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+    <style name="ActionBar.Solid.Sterling" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_sterling</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_sterling</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_sterling</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Sterling</item>
-        <item name="android:titleTextStyle">@style/ActionBarTextStyle</item>
     </style>
 
-    <style name="ActionBarTextStyle" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/White</item>
-    </style>
-
-    <style name="ActionBar.Transparent.Sterling" parent="@android:style/Widget.Holo.Light.ActionBar">
+    <style name="ActionBar.Transparent.Sterling" parent="@android:style/Widget.Holo.ActionBar">
         <item name="android:background">@drawable/ab_transparent_sterling</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Sterling</item>
     </style>
 
-    <style name="PopupMenu.Sterling" parent="@android:style/Widget.Holo.Light.ListPopupWindow">
+    <style name="PopupMenu.Sterling" parent="@android:style/Widget.Holo.ListPopupWindow">
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_sterling</item>	
     </style>
 
-    <style name="DropDownListView.Sterling" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
+    <style name="DropDownListView.Sterling" parent="@android:style/Widget.Holo.ListView.DropDown">
         <item name="android:listSelector">@drawable/selectable_background_sterling</item>
     </style>
 
-    <style name="ActionBarTabStyle.Sterling" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+    <style name="ActionBarTabStyle.Sterling" parent="@android:style/Widget.Holo.ActionBar.TabView">
         <item name="android:background">@drawable/tab_indicator_ab_sterling</item>
     </style>
 
-    <style name="DropDownNav.Sterling" parent="@android:style/Widget.Holo.Light.Spinner">
+    <style name="DropDownNav.Sterling" parent="@android:style/Widget.Holo.Spinner">
         <item name="android:background">@drawable/spinner_background_ab_sterling</item>
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_sterling</item>
         <item name="android:dropDownSelector">@drawable/selectable_background_sterling</item>
     </style>
     
-    <style name="ProgressBar.Sterling" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+    <style name="ProgressBar.Sterling" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_sterling</item>
     </style>
     
-    <style name="ActionButton.CloseMode.Sterling" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
+    <style name="ActionButton.CloseMode.Sterling" parent="@android:style/Widget.Holo.ActionButton.CloseMode">
         <item name="android:background">@drawable/btn_cab_done_sterling</item>
     </style>
 
-    <style name="ActionButtonOverflowSterling" parent="@android:style/Widget.Holo.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_action_overflow</item>
+    <style name="SpinnerDropDownItem" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/White</item>
     </style>
     
-    <style name="FontHeader" parent="@android:style/TextAppearance.Large">
+    <style name="FontHeader" parent="@android:style/TextAppearance.Medium">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/PrimaryColor</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- this style is only referenced in a Light.DarkActionBar based theme -->
