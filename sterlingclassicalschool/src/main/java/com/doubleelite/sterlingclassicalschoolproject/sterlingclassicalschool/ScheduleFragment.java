@@ -123,8 +123,11 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
         super.onResume();
         // Set title. We do that here because if the user presses the back button
         // to get back to this fragment we need to update the title from the previous title.
-        getActivity().getActionBar()
-                .setTitle(R.string.fragment_title_schedule);
+        getActivity().getActionBar().setTitle(R.string.fragment_title_schedule);
+        // Show the navigation action dropdown again (because we hid it onStop).
+        // This is just in case the user hides the app while on this page and then
+        // comes back instead of switching pages.
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
     }
 
     // Inner class for handling the sectionizer

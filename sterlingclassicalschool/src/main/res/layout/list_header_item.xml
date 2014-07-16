@@ -8,9 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/SecondaryColor"
+        android:textColor="@color/Black"
         android:textSize="20sp"
         android:textAllCaps="true"
+        android:fontFamily="sans-serif-thin"
         android:text="Monday"
         android:id="@+id/tv_list_header" />
 
