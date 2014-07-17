@@ -2,14 +2,16 @@
 
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/tablelayout_vertical_padding"
+    android:paddingBottom="@dimen/tablelayout_vertical_padding">
 
     <TableRow
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent" >
 
         <TextView
-            android:layout_width="@dimen/tablelayout_item_width"
+            android:layout_width="@dimen/tablelayout_room_item_width"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="201"
@@ -29,7 +31,7 @@
 
     <TableRow
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent" >
 
         <TextView
             android:layout_width="wrap_content"

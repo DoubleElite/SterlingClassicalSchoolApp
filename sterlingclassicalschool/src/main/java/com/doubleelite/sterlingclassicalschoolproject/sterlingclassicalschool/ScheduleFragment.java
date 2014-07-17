@@ -1,11 +1,9 @@
 package com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
@@ -14,7 +12,6 @@ import com.mobsandgeeks.adapters.SimpleSectionAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class ScheduleFragment extends ListFragment implements ActionBar.OnNavigationListener {
 
@@ -47,7 +44,7 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
         adapter = new StudentClassAdapter(context, R.layout.class_item, setClassScheduleForResult("schedule_12th.xml"));
 
         // Create a new SectionAdapter. We pass it our actual data adapter and then the layout and id of the view we use for the header.
-        sectionAdapter = new SimpleSectionAdapter<StudentClass>(context, adapter, R.layout.list_header_item, R.id.tv_list_header, new StudentClassSectionizer());
+        sectionAdapter = new SimpleSectionAdapter<StudentClass>(context, adapter, R.layout.class_list_header_item, R.id.tv_list_header, new StudentClassSectionizer());
 
         // Set the adapter for ListFragment we are using.
         setListAdapter(sectionAdapter);
