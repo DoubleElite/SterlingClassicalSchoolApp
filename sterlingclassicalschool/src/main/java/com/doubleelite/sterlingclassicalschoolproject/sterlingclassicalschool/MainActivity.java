@@ -111,13 +111,6 @@ public class MainActivity extends Activity {
         // Set listener for drawer items
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-        getFragmentManager().addOnBackStackChangedListener(
-                new FragmentManager.OnBackStackChangedListener() {
-                    public void onBackStackChanged() {
-
-                    }
-                });
-
     }
 
     @Override
@@ -231,14 +224,10 @@ public class MainActivity extends Activity {
         // Create the fragment from the constructor and add it to the fragment container ViewGroup
         Fragment initialFragment = fragment;
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, initialFragment);
+        transaction.replace(R.id.fragment_container, initialFragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.commit();
         actionBar.setTitle(initialTitle);
     }
 
-    // When the user presses back we want the title to update to match the fragment
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
 }

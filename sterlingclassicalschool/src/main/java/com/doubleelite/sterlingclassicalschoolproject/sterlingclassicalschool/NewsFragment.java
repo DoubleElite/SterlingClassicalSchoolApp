@@ -1,5 +1,6 @@
 package com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -79,12 +80,14 @@ public class NewsFragment extends Fragment {
         lvNewsItems = (ListView)v.findViewById(R.id.lv_newsItems);
         loadingLayout = (RelativeLayout)v.findViewById(R.id.loading_layout_news_fragment);
 
+        // Hide any actionbar spinners that be left over from other fragments that didn't close properly.
+        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+
         // Get SharedPrefs and the SharedPrefs Editor.
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         // Initial download. Once we do this once we only want the user to be able to update it.
-        // TODO: setNewsItems() contents should be ran on a separate thread.
         if(sharedPreferences.getBoolean("firstTimeRunningApp", true)) {
             downloadNewsItems();
             // We now have ran the app for the first time. Put the value in and apply it.
@@ -203,7 +206,7 @@ public class NewsFragment extends Fragment {
     }
 
     private void downloadNewsItems() {
-        // If we aren't already downloading anything to go ahead and get the items again.
+        // If we aren't already downloading anything go ahead and get the items again.
         if (!isDownloading) {
             try {
                 URL url = new URL("http://feeds.feedburner.com/SterlingClassicalSchool?format=xml");
@@ -297,7 +300,7 @@ public class NewsFragment extends Fragment {
         }
         // This is the only way I know of showing the most recently added items in the calender at the top
         // If this wasn't here the newest items would be at the bottom.
-        Collections.reverse(newsItems);
+        // Collections.reverse(newsItems);
         return newsItems;
     }
 

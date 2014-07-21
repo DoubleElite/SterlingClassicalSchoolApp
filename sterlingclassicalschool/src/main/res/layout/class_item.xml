@@ -7,37 +7,31 @@
     android:paddingBottom="@dimen/tablelayout_vertical_padding">
 
     <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <TextView
+            style="@style/FontHeader"
             android:layout_width="@dimen/tablelayout_room_item_width"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="201"
             android:id="@+id/tv_class_room"
             android:layout_column="0" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            style="@style/FontHeader"
-            android:text="Biology"
+            style="@style/FontHeaderBlack"
+            android:layout_weight="1"
+            android:text="Biology and this a super long text tiltle that I want to check"
             android:id="@+id/tv_class_subject"
             android:layout_column="1" />
 
     </TableRow>
 
     <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:fontFamily="sans-serif-thin"
+            style="@style/FontSubHeaderBlack"
             android:text="8:00 - 8:55"
             android:id="@+id/tv_class_time"
             android:layout_column="1" />
