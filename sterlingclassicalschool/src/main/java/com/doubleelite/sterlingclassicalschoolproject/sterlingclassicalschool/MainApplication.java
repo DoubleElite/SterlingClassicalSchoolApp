@@ -15,7 +15,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.v("APP", "Application onCreate - Initialize Parse");
+        Log.v("APP", "Application - Initialize Parse");
         // Setup Parse for push notifications
         Parse.initialize(this, "dbgMLg4QssgeHn6ogl9qcorJ74IYWBO29d731nqn", "QUNUh1yKcSBfIko45FDOVvPid7oakpmZzllNsnkF");
         // Set the icon in the status bar
