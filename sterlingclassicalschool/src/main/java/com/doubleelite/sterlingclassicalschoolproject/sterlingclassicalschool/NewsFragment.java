@@ -20,6 +20,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingRightInAnimationAdapter;
+
 import org.jsoup.Jsoup;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -59,9 +61,6 @@ public class NewsFragment extends Fragment {
     InputStream eventXmlFIle;
     File cacheFile;
 
-    // Pref
-    public static final String PREFS_NAME = "com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool.PREFERENCES";
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +83,7 @@ public class NewsFragment extends Fragment {
         getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
         // Get SharedPrefs and the SharedPrefs Editor.
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getResources().getString(R.string.PREFS), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         // Initial download. Once we do this once we only want the user to be able to update it.
@@ -307,7 +306,15 @@ public class NewsFragment extends Fragment {
     private void updateNewsListView(ArrayList<NewsItem> newsItems) {
         newsItemAdapter = new NewsItemAdapter(context, R.layout.news_item, newsItems);
         newsItemAdapter.notifyDataSetChanged();
-        lvNewsItems.setAdapter(newsItemAdapter);
+
+        // Create the ListView animation adapter from the listviewanimations lib,
+        // Then we pass in our actual data adapter.
+        SwingRightInAnimationAdapter swingRightInAnimationAdapter = new SwingRightInAnimationAdapter(newsItemAdapter);
+
+        // Assign the ListView to the AnimationAdapter and vice versa.
+        swingRightInAnimationAdapter.setAbsListView(lvNewsItems);
+        lvNewsItems.setAdapter(swingRightInAnimationAdapter);
+
         // Remove the loading icon and relative layout it is nestled in.
         loadingLayout.setVisibility(View.GONE);
     }

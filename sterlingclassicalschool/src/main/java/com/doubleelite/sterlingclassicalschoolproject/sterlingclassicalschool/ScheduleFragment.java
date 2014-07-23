@@ -9,6 +9,7 @@ import android.widget.SpinnerAdapter;
 
 import com.mobsandgeeks.adapters.Sectionizer;
 import com.mobsandgeeks.adapters.SimpleSectionAdapter;
+import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingRightInAnimationAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
     // Adapters
     StudentClassAdapter adapter;
     SimpleSectionAdapter<StudentClass> sectionAdapter;
+    SwingRightInAnimationAdapter swingRightInAnimationAdapter;
 
     // Parsers
     StudentClassParser parser;
@@ -43,10 +45,17 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
         // Set the result via an adapter and then set up the section adapter (custom lib).
         adapter = new StudentClassAdapter(context, R.layout.class_item, setClassScheduleForResult("schedule_12th.xml"));
 
-        // Create a new SectionAdapter. We pass it our actual data adapter and then the layout and id of the view we use for the header.
-        sectionAdapter = new SimpleSectionAdapter<StudentClass>(context, adapter, R.layout.class_list_header_item, R.id.tv_list_header, new StudentClassSectionizer());
+        // Create the ListView animation adapter from the listviewanimations lib,
+        // Then we pass in our actual data adapter.
+        swingRightInAnimationAdapter = new SwingRightInAnimationAdapter(adapter);
 
-        // Set the adapter for ListFragment we are using.
+        // Assign the ListView to the AnimationAdapter and vice versa.
+        swingRightInAnimationAdapter.setAbsListView(getListView());
+
+        // Create a new SectionAdapter. We pass it our animated data adapter and then the layout and id of the view we use for the header.
+        sectionAdapter = new SimpleSectionAdapter<StudentClass>(context, swingRightInAnimationAdapter, R.layout.class_list_header_item, R.id.tv_list_header, new StudentClassSectionizer());
+
+        // Set the adapter for ListFragment we are using. SectionAdapter is our "final" adapter, it will wrap everything together in this case.
         setListAdapter(sectionAdapter);
 
         // Create the adapter for the action dropdown (select different grades)
@@ -92,7 +101,7 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // Make sure the adapter knows data has been changed (since the initial setting)
+        // Make sure the section adapter (which is our "final" adapter, i.e the last one used to wrap everything together knows data has been changed (since the initial setting)
         sectionAdapter.notifyDataSetChanged();
     }
 
