@@ -42,21 +42,8 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
         // Create a new parser
         parser = new StudentClassParser();
 
-        // Set the result via an adapter and then set up the section adapter (custom lib).
-        adapter = new StudentClassAdapter(context, R.layout.class_item, setClassScheduleForResult("schedule_12th.xml"));
-
-        // Create the ListView animation adapter from the listviewanimations lib,
-        // Then we pass in our actual data adapter.
-        swingRightInAnimationAdapter = new SwingRightInAnimationAdapter(adapter);
-
-        // Assign the ListView to the AnimationAdapter and vice versa.
-        swingRightInAnimationAdapter.setAbsListView(getListView());
-
-        // Create a new SectionAdapter. We pass it our animated data adapter and then the layout and id of the view we use for the header.
-        sectionAdapter = new SimpleSectionAdapter<StudentClass>(context, swingRightInAnimationAdapter, R.layout.class_list_header_item, R.id.tv_list_header, new StudentClassSectionizer());
-
-        // Set the adapter for ListFragment we are using. SectionAdapter is our "final" adapter, it will wrap everything together in this case.
-        setListAdapter(sectionAdapter);
+        // Setup all the different adapters for the listview and display the result.
+        setUpAdaptersAndSetListView("schedule_12th.xml");
 
         // Create the adapter for the action dropdown (select different grades)
         SpinnerAdapter spinnerAdapter = ArrayAdapter.createFromResource(context,
@@ -93,16 +80,9 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
 
 
     public void setClassSchedule(String scheduleResourceName) {
-        // Parse the xml file we passed through and set the contents (which returns an arraylist) to out studentclasses arraylist.
-        try {
-            // Remove the current schedule and then set it equal to the new one.
-            studentClasses.clear();
-            studentClasses = parser.parse(context.getAssets().open(scheduleResourceName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // Make sure the section adapter (which is our "final" adapter, i.e the last one used to wrap everything together knows data has been changed (since the initial setting)
-        sectionAdapter.notifyDataSetChanged();
+        // Remove the current schedule and then pass the class we want to display next
+        studentClasses.clear();
+        setUpAdaptersAndSetListView(scheduleResourceName);
     }
 
     public ArrayList<StudentClass> setClassScheduleForResult(String scheduleResourceName) {
@@ -134,6 +114,26 @@ public class ScheduleFragment extends ListFragment implements ActionBar.OnNaviga
         // This is just in case the user hides the app while on this page and then
         // comes back instead of switching pages.
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+    }
+
+    private void setUpAdaptersAndSetListView(String classScheduleToDisplay) {
+        // Set the result via an adapter and then set up the section adapter (custom lib).
+        adapter = new StudentClassAdapter(context, R.layout.class_item, setClassScheduleForResult(classScheduleToDisplay));
+
+        // Create a new SectionAdapter. We pass it our animated data adapter and then the layout and id of the view we use for the header.
+        sectionAdapter = new SimpleSectionAdapter<StudentClass>(context, adapter, R.layout.class_list_header_item, R.id.tv_list_header, new StudentClassSectionizer());
+
+        // Create the ListView animation adapter from the listviewanimations lib,
+        // Then we pass in our actual data adapter.
+        swingRightInAnimationAdapter = new SwingRightInAnimationAdapter(sectionAdapter);
+
+        // Assign the ListView to the AnimationAdapter and vice versa.
+        swingRightInAnimationAdapter.setAbsListView(getListView());
+
+
+
+        // Set the adapter for ListFragment we are using. SectionAdapter is our "final" adapter, it will wrap everything together in this case.
+        setListAdapter(swingRightInAnimationAdapter);
     }
 
     // Inner class for handling the sectionizer
