@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="contact_title_address">Address</string>
-    <string name="contact_text_address">Bldg 7 Suite 700. Leander, TX 78641</string>
+    <string name="contact_text_address">11880 Old 2243 West Bldg 7 Suite 700. Leander, TX 78641</string>
 
     <string name="contact_title_phone">Phone</string>
     <string name="contact_text_phone">(512) 259-2722</string>
