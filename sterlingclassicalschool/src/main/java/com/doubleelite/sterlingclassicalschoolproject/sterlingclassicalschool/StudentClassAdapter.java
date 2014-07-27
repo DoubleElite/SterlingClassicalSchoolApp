@@ -55,10 +55,8 @@ public class StudentClassAdapter extends ArrayAdapter<StudentClass> {
 
     static class StudentClassHolder
     {
-        TextView txtGrade;
         TextView txtSubject;
         TextView txtTime;
         TextView txtRoom;
-        TextView txtColor;
     }
 }
