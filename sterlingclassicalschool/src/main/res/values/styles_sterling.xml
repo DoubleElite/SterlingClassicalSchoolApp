@@ -31,6 +31,7 @@
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_sterling</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Sterling</item>
         <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_bar</item>
+        <item name="showcaseViewStyle">@style/SterlingShowcaseTheme</item>
         
                 <!-- Light.DarkActionBar specific -->
         <item name="android:actionBarWidgetTheme">@style/Theme.Sterling.Widget</item>
@@ -115,6 +116,20 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/PrimaryColor</item>
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="FontShowcaseTitle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/PrimaryColor</item>
+    </style>
+
+    <!-- Showcase styles -->
+
+    <style name="SterlingShowcaseTheme" parent="ShowcaseView.Light">
+        <item name="sv_backgroundColor">#3300A621</item>
+        <item name="sv_showcaseColor">#00801A</item>
+        <item name="sv_buttonText">Got it!</item>
+        <item name="sv_tintButtonColor">true</item>
+        <item name="sv_titleTextAppearance">@style/FontShowcaseTitle</item>
     </style>
 
     <!-- this style is only referenced in a Light.DarkActionBar based theme -->

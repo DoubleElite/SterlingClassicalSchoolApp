@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,6 +21,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.PushService;
@@ -42,7 +46,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     // Views
     private DrawerLayout drawerLayout;
@@ -66,9 +70,28 @@ public class MainActivity extends Activity {
         // Get the actionbar
         actionBar = getActionBar();
 
-        // In order to change fragments later you must add them dynamically (not via XML)
-        // So here we setup which fragment we want to display first.
-        setInitialFragment(new NewsFragment(), "Events");
+        // Get the SharedPrefs
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.PREFS), Context.MODE_PRIVATE);
+
+        // Is it the first launch? If yes show the tutorial if not load the fragment like normal.
+        if(sharedPref.getBoolean("firstLaunch", true)) {
+            // We added the showcase library using Maven instead of having the actual file in the libs folder.
+            // Create the showcase view to let the user know there is a drawer.
+            new ShowcaseView.Builder(this)
+                    .setTarget(new ActionViewTarget(this, ActionViewTarget.Type.TITLE))
+                    .setContentTitle("Navigation")
+                    .setContentText("Here is where the navigation drawer is located. TAP here or PULL from the side to access the navigation pages.")
+                    .hideOnTouchOutside()
+                    .setShowcaseEventListener(this)
+                    .build();
+
+            // No longer the first launch so change the status
+            sharedPref.edit().putBoolean("firstLaunch", false).commit();
+        } else {
+            // In order to change fragments later you must add them dynamically (not via XML)
+            // So here we setup which fragment we want to display first.
+            setInitialFragment(new NewsFragment(), "Events");
+        }
 
         // Set the pages for the app drawer and set the app title
         appPages = getResources().getStringArray(R.array.main_app_drawer_pages);
@@ -228,6 +251,20 @@ public class MainActivity extends Activity {
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.commit();
         actionBar.setTitle(initialTitle);
+    }
+
+    @Override
+    public void onShowcaseViewHide(ShowcaseView showcaseView) {
+        // The user closed the showcase view, let's load the initial fragment now.
+        setInitialFragment(new NewsFragment(), "Events");
+    }
+
+    @Override
+    public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
+    }
+
+    @Override
+    public void onShowcaseViewShow(ShowcaseView showcaseView) {
     }
 
 }
