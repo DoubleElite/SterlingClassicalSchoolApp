@@ -30,7 +30,7 @@ public class MainApplication extends Application {
         // Add the id to the installation, this should help prevent multiple notifications if the user uninstalls
         // and reinstalls the app.
         ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-        installation.put("UniqueId",android_id);
+        installation.put("UniqueId", android_id);
 
         // If the user doesn’t have a network connection, the object will be stored
         // safely on the device until a new connection has been established.

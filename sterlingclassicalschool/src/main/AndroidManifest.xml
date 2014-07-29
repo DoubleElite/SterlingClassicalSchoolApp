@@ -25,9 +25,7 @@
         android:logo="@drawable/ic_actionbar_logo"
         android:label="@string/app_name"
         android:theme="@style/Theme.Sterling"
-        android:name="com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool.MainApplication"
-        android:versionCode="1"
-        android:versionName="1.0" >
+        android:name="com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool.MainApplication" >
         <activity
             android:name="com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool.MainActivity"
             android:label="@string/title_activity_main"
