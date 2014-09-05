@@ -8,4 +8,6 @@
 
     <string name="contact_title_directions">Directions</string>
     <string name="contact_text_directions">Head north on 183 towards Leander. Turn left at the light at the intersection of 183 and 2243. There will be and HEB Plus on the corner. Drive west on 2243 until you come to the light at Bagdad. Turn right on Bagdad by the CVS Pharmacy. Our entrance is on the right before you reach the first subdivision.</string>
+
+    <string name="contact_title_map">Map</string>
 </resources>

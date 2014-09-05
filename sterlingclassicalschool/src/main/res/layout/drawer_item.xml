@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:background="@drawable/lv_item_drawer_bg">
+    
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/iv_drawer_icon"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,6 +21,7 @@
         android:paddingTop="@dimen/drawer_listview_item_padding"
         android:paddingBottom="@dimen/drawer_listview_item_padding"
         android:textColor="@color/WhiteSmoke"
-        android:id="@+id/tv_drawer_item" />
+        android:id="@+id/tv_drawer_item"
+        android:layout_gravity="center_vertical"/>
 
 </LinearLayout>

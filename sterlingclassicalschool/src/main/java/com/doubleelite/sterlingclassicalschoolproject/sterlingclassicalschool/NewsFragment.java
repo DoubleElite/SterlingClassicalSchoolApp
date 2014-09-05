@@ -37,8 +37,12 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
 
 public class NewsFragment extends Fragment {
 
@@ -285,6 +289,14 @@ public class NewsFragment extends Fragment {
 
                 } else if(eventType==XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")){
                     insideItem=false;
+                    // Check to see if the event has happened yet, if it has don't show it.
+                    try {
+                        Date dateOfItem = new SimpleDateFormat("E, d MMMM yyyy", Locale.ENGLISH).parse(item.date);
+                        // TODO: IF dateOfItem is >= todays date then add the item
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
                     newsItems.add(item);
                 }
                 eventType = xpp.next(); //move to next element

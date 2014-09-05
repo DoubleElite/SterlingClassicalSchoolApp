@@ -1,50 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-
-    android:layout_height="match_parent">
-
-    <TextView
-        style="@style/FontHeader"
-        android:text="@string/contact_title_address"
-        android:id="@+id/tv_contact_title_address" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent" >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:paddingTop="@dimen/small_headline_and_body"
-            android:paddingBottom="@dimen/small_headline_and_body"
-            android:text="@string/contact_text_address"
-            android:id="@+id/tv_contact_text_adress" />
+            style="@style/FontHeader"
+            android:text="@string/contact_title_address"
+            android:id="@+id/tv_contact_title_address" />
 
-    <TextView
-        style="@style/FontHeader"
-        android:text="@string/contact_title_directions"
-        android:id="@+id/tv_contact_title_directions" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:paddingTop="@dimen/small_headline_and_body"
+                android:paddingBottom="@dimen/small_headline_and_body"
+                android:text="@string/contact_text_address"
+                android:id="@+id/tv_contact_text_adress" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            style="@style/FontHeader"
+            android:text="@string/contact_title_directions"
+            android:id="@+id/tv_contact_title_directions" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:paddingTop="@dimen/small_headline_and_body"
+                android:paddingBottom="@dimen/small_headline_and_body"
+                android:text="@string/contact_text_directions"
+                android:id="@+id/tv_contact_text_directions" />
+
+        <TextView
+            style="@style/FontHeader"
+            android:text="@string/contact_title_phone"
+            android:id="@+id/tv_contact_title_phone" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:paddingTop="@dimen/small_headline_and_body"
+                android:paddingBottom="@dimen/small_headline_and_body"
+                android:text="@string/contact_text_phone"
+                android:id="@+id/btn_contact_phone" />
+
+        <TextView
+            style="@style/FontHeader"
+            android:text="@string/contact_title_map"
+            android:id="@+id/tv_contact_title_map"
             android:paddingTop="@dimen/small_headline_and_body"
-            android:paddingBottom="@dimen/small_headline_and_body"
-            android:text="@string/contact_text_directions"
-            android:id="@+id/tv_contact_text_directions" />
+            android:paddingBottom="@dimen/small_headline_and_body"/>
 
-    <TextView
-        style="@style/FontHeader"
-        android:text="@string/contact_title_phone"
-        android:id="@+id/tv_contact_title_phone" />
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:name="com.google.android.gms.maps.MapFragment"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:paddingTop="@dimen/small_headline_and_body"
-            android:paddingBottom="@dimen/small_headline_and_body"
-            android:text="@string/contact_text_phone"
-            android:id="@+id/btn_contact_phone" />
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -55,7 +55,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     private ActionBarDrawerToggle drawerToggle;
 
     // Instance variables
-    private String[] appPages;
+    private ArrayList<DrawerItem> appPages;
     private String titleMainApp;
     private String titlePage;
     private String titleCurrent;
@@ -95,8 +95,13 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
 
         // Set the pages for the app drawer and set the app title
-        appPages = getResources().getStringArray(R.array.main_app_drawer_pages);
-        titlePage = appPages[0];
+        appPages = new ArrayList<DrawerItem>();
+            appPages.add(new DrawerItem("Events", R.drawable.ic_fa_calendar_o));
+            appPages.add(new DrawerItem("Student Schedule", R.drawable.ic_fa_calendar));
+            appPages.add(new DrawerItem("Our Goals", R.drawable.ic_fa_graduation_cap));
+            appPages.add(new DrawerItem("Admissions", R.drawable.ic_fa_envelope));
+            appPages.add(new DrawerItem("Contact Us", R.drawable.ic_fa_fax));
+        titlePage = appPages.get(0).getTitle();
         titleMainApp = "Sterling";
 
         // Get Views
@@ -215,7 +220,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             }
 
             // Set the action bar title to the new page
-            titlePage = appPages[position];
+            titlePage = appPages.get(position).getTitle();
             titleCurrent = titlePage;
             actionBar.setTitle(titleCurrent);
 

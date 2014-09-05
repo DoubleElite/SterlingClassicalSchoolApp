@@ -65,4 +65,6 @@ public class NewsItemAdapter extends ArrayAdapter<NewsItem> {
         TextView txtDescription;
         TextView txtDate;
     }
+
+
 }

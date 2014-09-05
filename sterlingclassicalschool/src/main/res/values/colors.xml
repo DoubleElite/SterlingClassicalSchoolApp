@@ -146,4 +146,5 @@
     <color name="PrimaryColorDark">#4e7501</color>
     <color name="PrimaryColorLight">#7fbf00</color>
     <color name="SecondaryColor">#A69508</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
