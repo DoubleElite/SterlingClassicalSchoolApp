@@ -37,6 +37,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -292,18 +293,23 @@ public class NewsFragment extends Fragment {
                     insideItem=false;
                     // Check to see if the event has happened yet, if it has don't show it.
                     try {
+                        // Get the current items date.
                         Date dateOfItem = new SimpleDateFormat("E, d MMMM yyyy", Locale.ENGLISH).parse(item.date);
-                        Log.v("APP", dateOfItem.toString());
-                        // TODO: IF dateOfItem is >= todays date then add the item
+
+                        // Get the current date.
                         Calendar c = Calendar.getInstance();
-                        SimpleDateFormat df = new SimpleDateFormat("E, d MMMM yyyy");
+                        SimpleDateFormat df = new SimpleDateFormat("E, d MMMM yyyy", Locale.ENGLISH);
                         String formattedDate = df.format(c.getTime());
-                        Log.v("APP", formattedDate);
+                        Date dateOfToday = df.parse(formattedDate);
+
+                        // If the item date is after or on today then show it.
+                        // This will hide past events.
+                        if(dateOfItem.after(dateOfToday) || dateOfItem == dateOfToday) {
+                            newsItems.add(item);
+                        }
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-
-                    newsItems.add(item);
                 }
                 eventType = xpp.next(); //move to next element
             }
