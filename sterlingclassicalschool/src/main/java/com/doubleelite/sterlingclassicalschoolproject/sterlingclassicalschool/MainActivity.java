@@ -261,7 +261,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     @Override
     public void onShowcaseViewHide(ShowcaseView showcaseView) {
-        // The user closed the showcase view, let's load the initial fragment now.
+        // The user closed the showcase view, let'supportMapFragment load the initial fragment now.
         setInitialFragment(new NewsFragment(), "Events");
     }
 

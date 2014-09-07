@@ -4,15 +4,20 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -22,21 +27,18 @@ public class ContactFragment extends Fragment {
     Button phoneBtn;
 
     // Map
+    MapView mapView;
     GoogleMap map;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.contact_fragment, container, false);
 
-        setUpMapIfNeeded();
-        LatLng sterling = new LatLng(30.578316, -97.869884);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(sterling, 13));
-
-        map.addMarker(new MarkerOptions()
-                .title("Sterling Classical School")
-                .snippet("We take college preperatory material to a whole new level!")
-                .position(sterling));
-
+        // Gets the MapView from the XML layout and creates it.
+        mapView = (MapView) view.findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+        // Setup all the map details.
+        setUpMapView();
 
         // Get the button and set a click listener.
         phoneBtn = (Button)view.findViewById(R.id.btn_contact_phone);
@@ -56,22 +58,47 @@ public class ContactFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        mapView.onResume();
         // Set title. We do that here because if the user presses the back button
         // to get back to this fragment we need to update the title from the previous title.
         getActivity().getActionBar()
                 .setTitle(R.string.fragment_title_contact_us);
     }
 
-    private void setUpMapIfNeeded() {
-        // Do a null check to confirm that we have not already instantiated the map.
-        if (map == null) {
-            map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            // Check if we were successful in obtaining the map.
-            if (map != null) {
-                // The Map is verified. It is now safe to manipulate the map.
+    private void setUpMapView() {
+        // Gets to GoogleMap from the MapView and does initialization stuff
+        map = mapView.getMap();
+        map.getUiSettings().setMyLocationButtonEnabled(false);
+        map.setMyLocationEnabled(false);
 
-            }
+        // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
+        try {
+            MapsInitializer.initialize(this.getActivity());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        LatLng sterlingLatLng = new LatLng(30.578316, -97.869884);
+
+        // Updates the location and zoom of the MapView
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(sterlingLatLng, 16);
+        map.animateCamera(cameraUpdate);
+        // Add a marker for the location
+        map.addMarker(new MarkerOptions()
+                .title("Sterling Classical School")
+                .snippet("We take college preparatory material to a whole new level!")
+                .position(sterlingLatLng));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 }

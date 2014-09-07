@@ -40,6 +40,7 @@ import java.net.URLConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
@@ -292,7 +293,12 @@ public class NewsFragment extends Fragment {
                     // Check to see if the event has happened yet, if it has don't show it.
                     try {
                         Date dateOfItem = new SimpleDateFormat("E, d MMMM yyyy", Locale.ENGLISH).parse(item.date);
+                        Log.v("APP", dateOfItem.toString());
                         // TODO: IF dateOfItem is >= todays date then add the item
+                        Calendar c = Calendar.getInstance();
+                        SimpleDateFormat df = new SimpleDateFormat("E, d MMMM yyyy");
+                        String formattedDate = df.format(c.getTime());
+                        Log.v("APP", formattedDate);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }

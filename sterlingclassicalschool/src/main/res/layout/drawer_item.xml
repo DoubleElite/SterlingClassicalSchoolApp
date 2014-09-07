@@ -20,6 +20,7 @@
         android:textAllCaps="false"
         android:paddingTop="@dimen/drawer_listview_item_padding"
         android:paddingBottom="@dimen/drawer_listview_item_padding"
+        android:paddingLeft="4dp"
         android:textColor="@color/WhiteSmoke"
         android:id="@+id/tv_drawer_item"
         android:layout_gravity="center_vertical"/>
