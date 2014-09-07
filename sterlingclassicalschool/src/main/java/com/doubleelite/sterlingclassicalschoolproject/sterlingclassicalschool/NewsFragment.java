@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,19 +29,16 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
 
@@ -178,7 +174,7 @@ public class NewsFragment extends Fragment {
         // Clear the menu before adding new items. Otherwise there is a chance you will have duplicate items.
         menu.clear();
         // Inflate the menu resource we want to use.
-        inflater.inflate(R.menu.news_actions, menu);
+        inflater.inflate(R.menu.events_actions, menu);
     }
 
     @Override

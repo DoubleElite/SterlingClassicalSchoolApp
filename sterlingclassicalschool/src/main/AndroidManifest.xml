@@ -50,6 +50,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
+        </activity>
+
         <service android:name="com.parse.PushService" />
             <receiver android:name="com.parse.ParseBroadcastReceiver"
                 android:icon="@drawable/ic_actionbar_logo">

@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
@@ -16,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -112,14 +114,14 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                // Get the current page title and set it as the news_actions title
+                // Get the current page title and set it as the main_actions title
                 titleCurrent = titlePage;
                 actionBar.setTitle(titleCurrent);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
             public void onDrawerOpened(View view) {
                 super.onDrawerOpened(view);
-                // Get the news_actions app title and set it as the news_actions title
+                // Get the main_actions app title and set it as the main_actions title
                 titleCurrent = titleMainApp;
                 actionBar.setTitle(titleCurrent);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
@@ -143,6 +145,14 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Create the main options menu, the one separate from any fragment options.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
@@ -162,6 +172,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         // as you specify a parent activity in AndroidManifest.xml.
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
+        }
+        if(item.getItemId() == R.id.action_settings ) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/preferences_category_title_events"
+        android:key="pref_key_past_events">
+        <CheckBoxPreference
+            android:key="pref_key_show_past_events"
+            android:summary="@string/preferences_summary_past_events"
+            android:title="@string/preferences_title_past_events"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

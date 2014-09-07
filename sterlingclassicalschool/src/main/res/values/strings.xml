@@ -12,6 +12,7 @@
 
     <!-- Activity -->
     <string name="title_activity_main">Sterling</string>
+    <string name="title_activity_settings">Settings</string>
 
     <!-- Drawer Titles -->
     <string name="fragment_title_schedule">Student Schedule</string>
@@ -21,6 +22,11 @@
     <string name="fragment_title_contact_us">Contact Us</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+
+    <!-- Preferences -->
+    <string name="preferences_category_title_events">Events</string>
+    <string name="preferences_title_past_events">Show past events</string>
+    <string name="preferences_summary_past_events">Check this to show any events that have happened before today</string>
 
     <!-- Map Keys -->
     <string name="MAP_DEBUG_KEY">AIzaSyCfsMSt5Vdq77RtBcKqiiKpZiUbwnhJmEk</string>
