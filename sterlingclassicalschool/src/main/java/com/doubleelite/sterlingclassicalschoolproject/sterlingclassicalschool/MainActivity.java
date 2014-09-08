@@ -147,8 +147,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Create the main options menu, the one separate from any fragment options.
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_actions, menu);
+        //TODO: Add the settings fragment in a future update.
+        //MenuInflater inflater = getMenuInflater();
+        //inflater.inflate(R.menu.main_actions, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

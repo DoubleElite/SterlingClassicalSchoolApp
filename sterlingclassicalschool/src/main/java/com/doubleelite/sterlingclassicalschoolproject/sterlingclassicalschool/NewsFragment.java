@@ -172,7 +172,7 @@ public class NewsFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         // Clear the menu before adding new items. Otherwise there is a chance you will have duplicate items.
-        menu.clear();
+        //menu.clear();
         // Inflate the menu resource we want to use.
         inflater.inflate(R.menu.events_actions, menu);
     }
