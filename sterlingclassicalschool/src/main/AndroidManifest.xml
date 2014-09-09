@@ -71,17 +71,13 @@
                 <intent-filter>
                     <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                     <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
-                    <!--
-                      IMPORTANT: Change "com.parse.starter" to match your app's package name.
-                    -->
                     <category android:name="com.doubleelite.sterlingclassicalschoolproject.sterlingclassicalschool" />
                 </intent-filter>
             </receiver>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="@string/MAP_DEBUG_KEY"/>
+            android:value="@string/MAP_RELEASE_KEY"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
